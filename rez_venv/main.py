@@ -1,12 +1,12 @@
 import argparse
 import os
-import subprocess
 import sys
 import venv
 
 
-def create_venv(venv_path, system_site_packages):
+def create_venv(venv_path="", system_site_packages=True):
     """Create a new virtual environment."""
+    venv_path = os.path.abspath(venv_path)
     builder = venv.EnvBuilder(system_site_packages=system_site_packages)
     builder.create(venv_path)
 
@@ -18,7 +18,7 @@ def parse_args(args):
         "venv_path",
         type=str,
         nargs='?',
-        default=os.path.join(os.getcwd(), "venv"),
+        default="venv",
         help="Path to the virtual environment",
     )
 
