@@ -1,17 +1,37 @@
 import os
 from rez.resolved_context import ResolvedContext
+from ..utils import log
 
 
 def pythonpath_from_context(packages):
     """Returns the pythonpath of a Rez context"""
+
+    log.info("Attempting to use current Rez context...")
     context = ResolvedContext.get_current()
+
     if not context:
         if packages:
+            log.info(
+                "No current Rez context found, resolving context with\
+                requested Rez packages..."
+            )
             context = ResolvedContext(package_requests=packages)
         else:
+            log.warning(
+                "No current Rez context found and no rez packages were requested, nothing will be installed to the venv"
+            )
             return []
+
     environ = context.get_environ()
-    return environ["PYTHONPATH"].split(os.pathsep)
+    pythonpath = environ.get("PYTHONPATH")
+
+    if pythonpath:
+        log.info("successfully found PYTHONPATH in Rez context!")
+        return pythonpath.split(os.pathsep)
+    log.warning(
+        "PYTHONPATH has not been set in the Rez context, no packages will be installed to the venv"
+    )
+    return []
 
 
 def symlinktree(source, destination, symlinks=False, ignore=None):
