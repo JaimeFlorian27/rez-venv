@@ -38,7 +38,6 @@ optional arguments:
 
 ## TODO
 
-- [ ] Logging!
 - [ ] Create venv from requirements.txt / context.rtx
 - [ ] append rez python package to venv.
 - [ ] If good enough distribute on PyPI.
