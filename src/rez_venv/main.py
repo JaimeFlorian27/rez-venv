@@ -1,6 +1,6 @@
 import sys
 import argparse
-from core import create_venv
+from .core import create_venv
 
 
 def parse_args(args):
