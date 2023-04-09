@@ -24,11 +24,6 @@ def test_venv_functional(venv_path):
     subprocess.check_call([os.path.join(venv_path, 'bin', 'python'), '-c', 'import argparse'])
 
 
-# def test_venv_no_system_site_packages(venv_path):
-#     with pytest.raises(subprocess.CalledProcessError):
-#         subprocess.check_call([os.path.join(venv_path, 'bin', 'python'), '-c', 'import numpy'])
-
-
 def test_venv_system_site_packages():
     path = "test_venv_sys_site_pkgs"
     main.create_venv(path, system_site_packages=True)
