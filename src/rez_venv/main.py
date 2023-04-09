@@ -2,6 +2,7 @@ import sys
 import argparse
 from core import create_venv
 
+
 def parse_args(args):
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(description="Create a virtual environment")
@@ -39,9 +40,8 @@ def parse_args(args):
 
 
 def main():
-    # args = parse_args(sys.argv[1:])
-    # create_venv(args.venv_path, args.system_site_packages, args.packages)
-    create_venv(packages=["PySide2", "mypy"])
+    args = parse_args(sys.argv[1:])
+    create_venv(args.venv_path, args.system_site_packages, args.packages)
 
 
 if __name__ == "__main__":
