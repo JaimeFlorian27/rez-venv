@@ -41,7 +41,9 @@ def parse_args(args):
 
 def main():
     args = parse_args(sys.argv[1:])
-    create_venv(args.venv_path, args.system_site_packages, args.packages)
+    create_venv(venv_path=args.venv_path,
+                system_site_packages=args.system_site_packages,
+                packages=args.packages)
 
 
 if __name__ == "__main__":
